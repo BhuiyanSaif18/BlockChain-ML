@@ -85,7 +85,7 @@ function createOrg1() {
 
 
 
-export PATH=$PATH:${PWD}/../bin
+export PATH=$PATH:${PWD}/bin
 export FABRIC_CA_CLIENT_HOME=${PWD}/organizations/peerOrganizations/org1.example.com/
 fabric-ca-client register --caname ca-org1 --id.name peer1 --id.secret peer1pw --id.type peer --tls.certfiles ${PWD}/organizations/fabric-ca/org1/tls-cert.pem
 mkdir -p organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com
