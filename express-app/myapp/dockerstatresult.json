@@ -1,0 +1,38 @@
+{
+    "id": "f437660190d6f4973f8d799b421435817947fe1ea8a3d72d1d9de7fdb0d7b20b",
+    "memUsage": 8519680,
+    "memLimit": 2147483648,
+    "memPercent": 0.396728515625,
+    "cpuPercent": 0.0335874686716792,
+    "pids": 12,
+    "netIO": {
+        "rx": 451601,
+        "wx": 280609
+    },
+    "blockIO": {
+        "r": 14069760,
+        "w": 0
+    },
+    "restartCount": 0,
+    "cpuStats": {
+        "cpu_usage": [],
+        "system_cpu_usage": 96864460000000,
+        "online_cpus": 8,
+        "throttling_data": []
+    },
+    "precpuStats": {
+        "cpu_usage": [],
+        "system_cpu_usage": 96856480000000,
+        "online_cpus": 8,
+        "throttling_data": []
+    },
+    "memoryStats": {
+        "usage": 8519680,
+        "max_usage": 20299776,
+        "stats": [],
+        "limit": 2147483648
+    },
+    "networks": {
+        "eth0": []
+    }
+},
