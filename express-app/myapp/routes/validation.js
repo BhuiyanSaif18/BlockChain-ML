@@ -11,14 +11,10 @@ function init() {
 // 	channel.addPeer(peer);
 //   channel.addOrderer(order);
 }
-var reciverUser = null;
-var money = null;
-var  responseChat;
-var transactiondata;
-var startbalance;
-var endbalance;
-var starttransaction;
-var endtransaction;
+var registerUser =require ("./registerUser.js");
+
+
+
 module.exports.queryCar = async function(res){
 
     try {
@@ -37,8 +33,8 @@ module.exports.queryCar = async function(res){
         const identity = await wallet.get('appUser');
         if (!identity) {
             console.log('An identity for the user "appUser" does not exist in the wallet');
-            console.log('Run the registerUser.js application before retrying');
-            return;
+            //console.log('Run the registerUser.js application before retrying');
+            identity = await registerUser.registerUser();
         }
 
         // Create a new gateway for connecting to our peer node.
@@ -89,8 +85,8 @@ module.exports.createCar = async function(res){
         const identity = await wallet.get('appUser');
         if (!identity) {
             console.log('An identity for the user "appUser" does not exist in the wallet');
-            console.log('Run the registerUser.js application before retrying');
-            return;
+            //console.log('Run the registerUser.js application before retrying');
+            identity = await registerUser.registerUser();
         }
 
         // Create a new gateway for connecting to our peer node.
