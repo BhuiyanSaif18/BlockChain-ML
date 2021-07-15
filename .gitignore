@@ -11,3 +11,4 @@
 /organizations/ordererOrganizations/
 /organizations/peerOrganizations/
 /system-genesis-block/
+/express-app/myapp/wallet/
