@@ -84,7 +84,7 @@ const job = schedule.scheduleJob('*/10 * * * * *', function(){
     }
     //res.send(data);
   });
-  console.log('The answer to life, the universe, and everything!');
+  //console.log('The answer to life, the universe, and everything!');
 });
 
 

@@ -1,4 +1,14 @@
 /node_modules/
 /package-lock.json
 /hfc-key-store/
-/home/saif/fabric-samples-v2/fabric-samples/fabcar/express-app/myapp/node_modules/
+/express-app/myapp/node_modules/
+/organizations/fabric-ca/ordererOrg/
+/organizations/fabric-ca/org1/
+/organizations/fabric-ca/org2/
+/channel-artifacts/
+/fabcar.tar.gz
+/log.txt
+/organizations/ordererOrganizations/
+/organizations/peerOrganizations/
+/system-genesis-block/
+/express-app/myapp/wallet/

@@ -10,11 +10,12 @@ const { Wallets } = require('fabric-network');
 const FabricCAServices = require('fabric-ca-client');
 const fs = require('fs');
 const path = require('path');
+var enrollAdmin =require ("./enrollAdmin.js");
 
-async function main() {
+module.exports.registerUser = async function main() {
     try {
         // load the network configuration
-        const ccpPath = path.resolve(__dirname, '..', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
+        const ccpPath = path.resolve(__dirname, '..','..','..', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
         const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
         // Create a new CA client for interacting with the CA.
@@ -22,7 +23,7 @@ async function main() {
         const ca = new FabricCAServices(caURL);
 
         // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), 'wallet');
+        const walletPath = path.join(process.cwd(), '/wallet');
         const wallet = await Wallets.newFileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
 
@@ -37,8 +38,8 @@ async function main() {
         const adminIdentity = await wallet.get('admin');
         if (!adminIdentity) {
             console.log('An identity for the admin user "admin" does not exist in the wallet');
-            console.log('Run the enrollAdmin.js application before retrying');
-            return;
+            //console.log('Run the enrollAdmin.js application before retrying');
+            adminIdentity= await enrollAdmin.enrollAdmin();
         }
 
         // build a user object for authenticating with the CA
@@ -65,11 +66,10 @@ async function main() {
         };
         await wallet.put('appUser', x509Identity);
         console.log('Successfully registered and enrolled admin user "appUser" and imported it into the wallet');
-
+        return await wallet.get('appUser')
     } catch (error) {
         console.error(`Failed to register user "appUser": ${error}`);
-        process.exit(1);
+        return;
     }
 }
 
-main();
