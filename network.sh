@@ -183,16 +183,18 @@ function createOrgs() {
     # IMAGE_TAG=${CA_IMAGETAG} docker-compose -f $COMPOSE_FILE_CA up -d 2>&1
     IMAGE_TAG=${CA_IMAGETAG} docker stack deploy --compose-file $COMPOSE_FILE_CA ml
     # sleep 3
+    infoln "------------------------> Comes here"
     . organizations/fabric-ca/registerEnroll.sh
+    infoln "------------------------> Comes here 2"
  
-  while :
-    do
-      if [ ! -f "organizations/fabric-ca/org1/tls-cert.pem" ]; then
-        sleep 1
-      else
-        break
-      fi
-    done
+  # while :
+  #   do
+  #     if [ ! -f "organizations/fabric-ca/org1/tls-cert.pem" ]; then
+  #       sleep 1
+  #     else
+  #       break
+  #     fi
+  #   done
 
     infoln "Creating Org1 Identities"
 
