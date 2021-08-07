@@ -182,8 +182,8 @@ function createOrgs() {
 
     # IMAGE_TAG=${CA_IMAGETAG} docker-compose -f $COMPOSE_FILE_CA up -d 2>&1
     IMAGE_TAG=${CA_IMAGETAG} docker stack deploy --compose-file $COMPOSE_FILE_CA ml
-
-    . organizations/fabric-ca/registerEnroll.sh
+    sleep 3
+    organizations/fabric-ca/registerEnroll.sh
 
   while :
     do
@@ -266,6 +266,7 @@ function createConsortium() {
 
 # Bring up the peer and orderer nodes using docker compose.
 function networkUp() {
+  # createSwarmNetwork
   checkPrereqs
   # generate artifacts if they don't exist
   if [ ! -d "organizations/peerOrganizations" ]; then
@@ -278,17 +279,21 @@ function networkUp() {
   if [ "${DATABASE}" == "couchdb" ]; then
     # COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_COUCH}"
     IMAGE_TAG=$IMAGETAG docker stack deploy --compose-file ${COMPOSE_FILE_COUCH} ml 
+    sleep 3
   fi
 
   # IMAGE_TAG=$IMAGETAG docker-compose ${COMPOSE_FILES} up -d 2>&1
-  IMAGE_TAG=$IMAGETAG docker stack deploy --compose-file ${COMPOSE_FILES} ml 
-
+  IMAGE_TAG=$IMAGETAG docker stack deploy --compose-file ${COMPOSE_FILE_BASE} ml 
+  sleep 3
   docker ps -a
   if [ $? -ne 0 ]; then
     fatalln "Unable to start network"
   fi
 }
 
+function createSwarmNetwork(){
+  docker network create --driver overlay --subnet=10.200.1.0/24 --attachable "ml_test-net"
+}
 # call the script to create the channel, join the peers of org1 and org2,
 # and then update the anchor peers for each organization
 function createChannel() {
