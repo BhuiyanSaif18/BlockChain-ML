@@ -29,7 +29,7 @@ rm -rf express-app/myapp/wallet/*
 ./network.sh down
 # ./network.sh up
 ./network.sh up -ca -s couchdb
-# ./network.sh createChannel -ca -s couchdb
+# ./network.sh up createChannel -ca -s couchdb
 # ./network.sh deployCC -ccn fabcar -ccv 1 -cci initLedger -ccl ${CC_SRC_LANGUAGE} -ccp ${CC_SRC_PATH}
 # popd test-network
 
