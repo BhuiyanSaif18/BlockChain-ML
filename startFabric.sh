@@ -26,11 +26,11 @@ rm -rf express-app/myapp/wallet/*
 
 # launch network; create channel and join peer to channel
 # pushd ../test-network
-./network.sh down
-# ./network.sh up
-./network.sh up createChannel -ca -s couchdb
+# ./network.sh down
+# ./network.sh up -ca -s couchdb
+# ./network.sh up createChannel -ca -s couchdb
 # ./network.sh createChannel
-# ./network.sh deployCC -ccn fabcar -ccv 1 -cci initLedger -ccl ${CC_SRC_LANGUAGE} -ccp ${CC_SRC_PATH}
+./network.sh deployCC -ccn fabcar -ccv 1 -cci initLedger -ccl ${CC_SRC_LANGUAGE} -ccp ${CC_SRC_PATH}
 # popd test-network
 
 cat <<EOF
