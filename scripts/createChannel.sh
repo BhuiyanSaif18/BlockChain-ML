@@ -66,7 +66,7 @@ joinChannel() {
 
 setAnchorPeer() {
   ORG=$1
-  docker exec ml_cli.1.ifa5joq8dkq72dvnecsxa1v6a ./scripts/setAnchorPeer.sh $ORG $CHANNEL_NAME 
+  docker exec $(docker ps --format="{{.Names}}" |grep 'cli') ./scripts/setAnchorPeer.sh $ORG $CHANNEL_NAME 
 }
 
 FABRIC_CFG_PATH=${PWD}/configtx
