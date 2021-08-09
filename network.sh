@@ -324,6 +324,7 @@ function deployCC() {
 }
 function dockerStackDown(){
   docker stack rm ml
+  sleep 10
   docker volume rm $(docker volume ls -q)
 }
 
@@ -331,7 +332,7 @@ function dockerStackDown(){
 function networkDown() {
   # stop org3 containers also in addition to org1 and org2, in case we were running sample to add org3
   # docker-compose -f $COMPOSE_FILE_BASE -f $COMPOSE_FILE_COUCH -f $COMPOSE_FILE_CA down --volumes --remove-orphans
-  dockerStackDown()
+  dockerStackDown
   #docker-compose -f $COMPOSE_FILE_COUCH_ORG3 -f $COMPOSE_FILE_ORG3 down --volumes --remove-orphans
   # Don't remove the generated artifacts -- note, the ledgers are always removed
   if [ "$MODE" != "restart" ]; then
