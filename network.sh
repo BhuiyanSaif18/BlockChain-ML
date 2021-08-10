@@ -268,7 +268,7 @@ function createConsortium() {
 
 # Bring up the peer and orderer nodes using docker compose.
 function networkUp() {
-  # createSwarmNetwork
+  createSwarmNetwork
   checkPrereqs
   # generate artifacts if they don't exist
   if [ ! -d "organizations/peerOrganizations" ]; then
@@ -294,7 +294,7 @@ function networkUp() {
 }
 
 function createSwarmNetwork(){
-  docker network create --driver overlay --subnet=10.200.1.0/24 --attachable "ml_test-net"
+  docker network create --driver overlay --subnet=10.200.1.0/24 --attachable "test-net"
 }
 # call the script to create the channel, join the peers of org1 and org2,
 # and then update the anchor peers for each organization
