@@ -21,6 +21,13 @@ services:
         max_attempts: 3
       placement:
         constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 100M
+        reservations:
+          cpus: '0.25'
+          memory: 50M
 
     hostname: couchdb0
     image: couchdb:3.1.1
@@ -59,6 +66,13 @@ services:
         max_attempts: 3
       placement:
         constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 100M
+        reservations:
+          cpus: '0.25'
+          memory: 50M
 
     hostname: couchdb1
     image: couchdb:3.1.1

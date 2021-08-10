@@ -22,6 +22,13 @@ services:
         max_attempts: 3
       placement:
         constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 100M
+        reservations:
+          cpus: '0.25'
+          memory: 50M
 
     image: hyperledger/fabric-ca:1.4.9
     environment:
@@ -49,7 +56,13 @@ services:
         max_attempts: 3
       placement:
         constraints: [node.role == manager]
-
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 100M
+        reservations:
+          cpus: '0.25'
+          memory: 50M
     image: hyperledger/fabric-ca:1.4.9
     environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -76,6 +89,13 @@ services:
         max_attempts: 3
       placement:
         constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 100M
+        reservations:
+          cpus: '0.25'
+          memory: 50M
 
     image: hyperledger/fabric-ca:1.4.9
     environment:
