@@ -180,18 +180,21 @@ function createOrgs() {
   if [ "$CRYPTO" == "Certificate Authorities" ]; then
     infoln "Generating certificates using Fabric CA"
 
-    IMAGE_TAG=${CA_IMAGETAG} docker-compose -f $COMPOSE_FILE_CA up -d 2>&1
-
+    # IMAGE_TAG=${CA_IMAGETAG} docker-compose -f $COMPOSE_FILE_CA up -d 2>&1
+    IMAGE_TAG=${CA_IMAGETAG} docker stack deploy --compose-file $COMPOSE_FILE_CA ml
+    # sleep 3
+    infoln "------------------------> Comes here"
     . organizations/fabric-ca/registerEnroll.sh
-
-  while :
-    do
-      if [ ! -f "organizations/fabric-ca/org1/tls-cert.pem" ]; then
-        sleep 1
-      else
-        break
-      fi
-    done
+    infoln "------------------------> Comes here 2"
+ 
+  # while :
+  #   do
+  #     if [ ! -f "organizations/fabric-ca/org1/tls-cert.pem" ]; then
+  #       sleep 1
+  #     else
+  #       break
+  #     fi
+  #   done
 
     infoln "Creating Org1 Identities"
 
@@ -265,6 +268,7 @@ function createConsortium() {
 
 # Bring up the peer and orderer nodes using docker compose.
 function networkUp() {
+  # createSwarmNetwork
   checkPrereqs
   # generate artifacts if they don't exist
   if [ ! -d "organizations/peerOrganizations" ]; then
@@ -275,17 +279,23 @@ function networkUp() {
   COMPOSE_FILES="-f ${COMPOSE_FILE_BASE}"
 
   if [ "${DATABASE}" == "couchdb" ]; then
-    COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_COUCH}"
+    # COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_COUCH}"
+    IMAGE_TAG=$IMAGETAG docker stack deploy --compose-file ${COMPOSE_FILE_COUCH} ml 
+    sleep 3
   fi
 
-  IMAGE_TAG=$IMAGETAG docker-compose ${COMPOSE_FILES} up -d 2>&1
-
+  # IMAGE_TAG=$IMAGETAG docker-compose ${COMPOSE_FILES} up -d 2>&1
+  IMAGE_TAG=$IMAGETAG docker stack deploy --compose-file ${COMPOSE_FILE_BASE} ml 
+  sleep 3
   docker ps -a
   if [ $? -ne 0 ]; then
     fatalln "Unable to start network"
   fi
 }
 
+function createSwarmNetwork(){
+  docker network create --driver overlay --subnet=10.200.1.0/24 --attachable "ml_test-net"
+}
 # call the script to create the channel, join the peers of org1 and org2,
 # and then update the anchor peers for each organization
 function createChannel() {
@@ -312,12 +322,17 @@ function deployCC() {
     fatalln "Deploying chaincode failed"
   fi
 }
-
+function dockerStackDown(){
+  docker stack rm ml
+  sleep 10
+  docker volume rm $(docker volume ls -q)
+}
 
 # Tear down running network
 function networkDown() {
   # stop org3 containers also in addition to org1 and org2, in case we were running sample to add org3
-  docker-compose -f $COMPOSE_FILE_BASE -f $COMPOSE_FILE_COUCH -f $COMPOSE_FILE_CA down --volumes --remove-orphans
+  # docker-compose -f $COMPOSE_FILE_BASE -f $COMPOSE_FILE_COUCH -f $COMPOSE_FILE_CA down --volumes --remove-orphans
+  dockerStackDown
   #docker-compose -f $COMPOSE_FILE_COUCH_ORG3 -f $COMPOSE_FILE_ORG3 down --volumes --remove-orphans
   # Don't remove the generated artifacts -- note, the ledgers are always removed
   if [ "$MODE" != "restart" ]; then
