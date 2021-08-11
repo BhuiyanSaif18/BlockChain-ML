@@ -187,14 +187,14 @@ function createOrgs() {
     . organizations/fabric-ca/registerEnroll.sh
     infoln "------------------------> Comes here 2"
  
-  # while :
-  #   do
-  #     if [ ! -f "organizations/fabric-ca/org1/tls-cert.pem" ]; then
-  #       sleep 1
-  #     else
-  #       break
-  #     fi
-  #   done
+  while :
+    do
+      if [ ! -f "organizations/fabric-ca/org1/tls-cert.pem" ]; then
+        sleep 1
+      else
+        break
+      fi
+    done
 
     infoln "Creating Org1 Identities"
 
