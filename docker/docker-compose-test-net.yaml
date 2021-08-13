@@ -29,10 +29,10 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.50'
+          cpus: '0.10'
           memory: 100M
         reservations:
-          cpus: '0.25'
+          cpus: '0.05'
           memory: 50M
     hostname: orderer.example.com
     image: hyperledger/fabric-orderer:2.2.2
@@ -79,10 +79,10 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.50'
+          cpus: '0.10'
           memory: 100M
         reservations:
-          cpus: '0.25'
+          cpus: '0.05'
           memory: 50M
     hostname: peer0.org1.example.com
     image: hyperledger/fabric-peer:2.2.2
@@ -144,10 +144,10 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.50'
+          cpus: '0.10'
           memory: 100M
         reservations:
-          cpus: '0.25'
+          cpus: '0.05'
           memory: 50M
     hostname: peer0.org2.example.com
     image: hyperledger/fabric-peer:2.2.2
@@ -210,10 +210,10 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.50'
+          cpus: '0.10'
           memory: 100M
         reservations:
-          cpus: '0.25'
+          cpus: '0.05'
           memory: 50M
     hostname: cli
     image: hyperledger/fabric-tools:2.2.2

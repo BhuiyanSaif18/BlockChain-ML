@@ -23,10 +23,10 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.50'
+          cpus: '0.10'
           memory: 100M
         reservations:
-          cpus: '0.25'
+          cpus: '0.05'
           memory: 50M
 
     hostname: couchdb0
@@ -68,10 +68,10 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.50'
+          cpus: '0.10'
           memory: 100M
         reservations:
-          cpus: '0.25'
+          cpus: '0.05'
           memory: 50M
 
     hostname: couchdb1
