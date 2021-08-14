@@ -20,7 +20,7 @@ services:
         delay: 5s
         max_attempts: 3
       placement:
-        constraints: [node.role == manager]
+        constraints: [node.role == worker]
       resources:
         limits:
           cpus: '0.10'
@@ -65,7 +65,7 @@ services:
         delay: 5s
         max_attempts: 3
       placement:
-        constraints: [node.role == manager]
+        constraints: [node.role == worker]
       resources:
         limits:
           cpus: '0.10'
