@@ -23,6 +23,13 @@
 /organizations/fabric-ca/org2/IssuerRevocationPublicKey
 /organizations/fabric-ca/org2/tls-cert.pem
 
+/addOrg3/fabric-ca/org3/msp
+/addOrg3/fabric-ca/org3/ca-cert.pem
+/addOrg3/fabric-ca/org3/fabric-ca-server.db
+/addOrg3/fabric-ca/org3/IssuerPublicKey
+/addOrg3/fabric-ca/org3/IssuerRevocationPublicKey
+/addOrg3/fabric-ca/org3/tls-cert.pem
+
 /channel-artifacts/
 /fabcar.tar.gz
 /log.txt
