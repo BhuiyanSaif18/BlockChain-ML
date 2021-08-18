@@ -281,7 +281,7 @@ function networkUp() {
   if [ "${DATABASE}" == "couchdb" ]; then
     # COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_COUCH}"
     IMAGE_TAG=$IMAGETAG docker stack deploy --compose-file ${COMPOSE_FILE_COUCH} ml 
-    sleep 3
+    sleep 300
   fi
 
   # IMAGE_TAG=$IMAGETAG docker-compose ${COMPOSE_FILES} up -d 2>&1

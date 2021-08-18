@@ -23,8 +23,8 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.10'
-          memory: 100M
+          cpus: '0.20'
+          memory: 150M
         reservations:
           cpus: '0.05'
           memory: 50M
@@ -68,8 +68,8 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.10'
-          memory: 100M
+          cpus: '0.20'
+          memory: 150M
         reservations:
           cpus: '0.05'
           memory: 50M

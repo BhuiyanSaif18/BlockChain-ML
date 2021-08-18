@@ -152,7 +152,7 @@ function addOrg3 () {
 
   infoln "Bringing up Org3 peer"
   Org3Up
-
+  sleep 10
   # Use the CLI container to create the configuration transaction needed to add
   # Org3 to the network
   infoln "Generating and submitting config tx to add Org3"
