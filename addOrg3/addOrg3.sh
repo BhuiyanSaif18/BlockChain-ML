@@ -89,8 +89,8 @@ function generateOrg3() {
 
     infoln "Generating certificates using Fabric CA"
 
-    IMAGE_TAG=${CA_IMAGETAG} docker-compose -f $COMPOSE_FILE_CA_ORG3 up -d 2>&1
-
+    # IMAGE_TAG=${CA_IMAGETAG} docker-compose -f $COMPOSE_FILE_CA_ORG3 up -d 2>&1
+    IMAGE_TAG=${CA_IMAGETAG} docker stack deploy --compose-file $COMPOSE_FILE_CA_ORG3 ml
     . fabric-ca/registerEnroll.sh
 
     sleep 10
@@ -124,9 +124,13 @@ function generateOrg3Definition() {
 function Org3Up () {
   # start org3 nodes
   if [ "${DATABASE}" == "couchdb" ]; then
-    IMAGE_TAG=${IMAGETAG} docker-compose -f $COMPOSE_FILE_ORG3 -f $COMPOSE_FILE_COUCH_ORG3 up -d 2>&1
+    IMAGE_TAG=$IMAGETAG docker stack deploy --compose-file ${COMPOSE_FILE_COUCH_ORG3} ml 
+    sleep 5
+    IMAGE_TAG=$IMAGETAG docker stack deploy --compose-file ${COMPOSE_FILE_ORG3} ml
+    # IMAGE_TAG=${IMAGETAG} docker-compose -f $COMPOSE_FILE_ORG3 -f $COMPOSE_FILE_COUCH_ORG3 up -d 2>&1
   else
-    IMAGE_TAG=$IMAGETAG docker-compose -f $COMPOSE_FILE_ORG3 up -d 2>&1
+    # IMAGE_TAG=$IMAGETAG docker-compose -f $COMPOSE_FILE_ORG3 up -d 2>&1
+    IMAGE_TAG=$IMAGETAG docker stack deploy --compose-file ${COMPOSE_FILE_ORG3} ml
   fi
   if [ $? -ne 0 ]; then
     fatalln "ERROR !!!! Unable to start Org3 network"
@@ -152,13 +156,13 @@ function addOrg3 () {
   # Use the CLI container to create the configuration transaction needed to add
   # Org3 to the network
   infoln "Generating and submitting config tx to add Org3"
-  docker exec cli ./scripts/org3-scripts/updateChannelConfig.sh $CHANNEL_NAME $CLI_DELAY $CLI_TIMEOUT $VERBOSE
+  docker exec $(docker ps --format="{{.Names}}" |grep 'cli') ./scripts/org3-scripts/updateChannelConfig.sh $CHANNEL_NAME $CLI_DELAY $CLI_TIMEOUT $VERBOSE
   if [ $? -ne 0 ]; then
     fatalln "ERROR !!!! Unable to create config tx"
   fi
 
   infoln "Joining Org3 peers to network"
-  docker exec cli ./scripts/org3-scripts/joinChannel.sh $CHANNEL_NAME $CLI_DELAY $CLI_TIMEOUT $VERBOSE
+  docker exec $(docker ps --format="{{.Names}}" |grep 'cli') ./scripts/org3-scripts/joinChannel.sh $CHANNEL_NAME $CLI_DELAY $CLI_TIMEOUT $VERBOSE
   if [ $? -ne 0 ]; then
     fatalln "ERROR !!!! Unable to join Org3 peers to network"
   fi
