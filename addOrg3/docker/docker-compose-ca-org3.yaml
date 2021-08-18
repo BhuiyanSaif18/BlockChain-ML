@@ -5,10 +5,32 @@
 
 version: '3.9'
 
+networks:
+  test-net:
+    external: true
+
 services:
 
   ca_org3:
-    image: hyperledger/fabric-ca:$IMAGE_TAG
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints: [node.role == worker]
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 100M
+        reservations:
+          cpus: '0.05'
+          memory: 50M
+
+    image: hyperledger/fabric-ca:1.4.9
     environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_NAME=ca-org3
@@ -19,4 +41,4 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ../fabric-ca/org3:/etc/hyperledger/fabric-ca-server
-    container_name: ca_org3
+    hostname: ca_org3

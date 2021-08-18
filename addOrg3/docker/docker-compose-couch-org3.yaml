@@ -6,11 +6,30 @@
 version: '3.9'
 
 networks:
-  test:
+  test-net:
+    external: true
 
 services:
   couchdb4:
-    container_name: couchdb4
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints: [node.role == worker]
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 100M
+        reservations:
+          cpus: '0.05'
+          memory: 50M
+
+    hostname: couchdb4
     image: couchdb:3.1.1
     # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
     # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
@@ -22,7 +41,7 @@ services:
     ports:
       - "9984:5984"
     networks:
-      - test
+      - test-net
 
   # peer0.org3.example.com:
   #   environment:
