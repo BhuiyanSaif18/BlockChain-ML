@@ -186,7 +186,7 @@ function createOrgs() {
     infoln "------------------------> Comes here"
     . organizations/fabric-ca/registerEnroll.sh
     infoln "------------------------> Comes here 2"
- 
+    # sleep 10
   while :
     do
       if [ ! -f "organizations/fabric-ca/org1/tls-cert.pem" ]; then
