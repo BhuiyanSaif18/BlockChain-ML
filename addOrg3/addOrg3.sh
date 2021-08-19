@@ -160,6 +160,8 @@ function addOrg3 () {
   if [ $? -ne 0 ]; then
     fatalln "ERROR !!!! Unable to create config tx"
   fi
+  
+  sleep 20
 
   infoln "Joining Org3 peers to network"
   docker exec $(docker ps --format="{{.Names}}" |grep 'cli') ./scripts/org3-scripts/joinChannel.sh $CHANNEL_NAME $CLI_DELAY $CLI_TIMEOUT $VERBOSE
