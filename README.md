@@ -1,4 +1,10 @@
 # BlockChain-ML
+This project aims to manage resources of a private blockchain network by minimizing and utilizing maximum resources needed for a service/container to run its nodes.
+There are currently two tags for this project.
+### V1.0.0
+This release is used for running all the containers in a single pc.
+### V2.0.0
+This release is used for running all the containers in a single manager node and this release is compatible with docker swarm.
 
 ## Fresh Installation 
 Run $ ./fresh-install-requirement.sh 
