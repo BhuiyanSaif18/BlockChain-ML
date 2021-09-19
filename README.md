@@ -20,6 +20,7 @@ $ go version
 If you see error after you have installed the requirement previously try adding the paths for the go
 
 $ export GOROOT=/usr/local/go-1.13
+
 $ export PATH=$GOROOT/bin:$PATH
 
 ## Bring up the network by running 
