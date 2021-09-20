@@ -9,7 +9,7 @@ This release is used for running all the containers in a single manager node and
 ## Fresh Installation 
 Run $ ./fresh-install-requirement.sh 
 
-* if you dont have permission to execute the script try running $ chmod 777 fresh-install-requirement.sh 
+* if you dont have permission to execute the script try running $ chmod 755 fresh-install-requirement.sh 
 
 ## Already installed environment
 
@@ -27,7 +27,7 @@ $ export PATH=$GOROOT/bin:$PATH
 
 $ ./startFabric.sh
 
-Wait for few moments as the network is bringing up with chaincode and channel.
+Wait for few moments as the network is bringing up with chaincode and channel. There may be error running the script. The error refers that the channel creation is failed or peer chaincode installation failed. The way to solve it to run the same script again if you face these errors.
 
 navigate to express-app/myapp
 
