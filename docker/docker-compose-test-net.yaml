@@ -97,6 +97,7 @@ services:
       # https://docs.docker.com/compose/networking/
       # - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=net_test-net
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=test-net
+      - CORE_VM_DOCKER_HOSTCONFIG_MEMORY=104857600
       - FABRIC_LOGGING_SPEC=INFO
       #- FABRIC_LOGGING_SPEC=DEBUG
       - CORE_PEER_TLS_ENABLED=true
@@ -165,6 +166,7 @@ services:
       # https://docs.docker.com/compose/networking/
       # - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=net_test-net
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=test-net
+      - CORE_VM_DOCKER_HOSTCONFIG_MEMORY=104857600
       - FABRIC_LOGGING_SPEC=INFO
       #- FABRIC_LOGGING_SPEC=DEBUG
       - CORE_PEER_TLS_ENABLED=true
