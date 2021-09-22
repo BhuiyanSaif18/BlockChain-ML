@@ -93,9 +93,19 @@ app.get('/queryCar', function(req, res){
   ValidationJS.queryCar(res);
 });
 
+app.get('/queryCar2', function(req, res){
+
+  ValidationJS.queryCar2(res);
+});
+
 app.get('/createCar', function(req, res){
 
   ValidationJS.createCar(res);
+});
+
+app.get('/createCar2', function(req, res){
+
+  ValidationJS.createCar2(res);
 });
 
 app.get('/predict', function(req, res){
