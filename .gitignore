@@ -37,10 +37,7 @@
 /organizations/peerOrganizations/
 /system-genesis-block/
 /express-app/myapp/wallet/
-<<<<<<< HEAD
 /express-app/myapp/wallet2/
-=======
 /docker-logs/Reports
 /bin
 /venv
->>>>>>> single-swarm-manager-keep
