@@ -37,3 +37,6 @@
 /organizations/peerOrganizations/
 /system-genesis-block/
 /express-app/myapp/wallet/
+/docker-logs/Reports
+/bin
+/venv
