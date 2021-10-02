@@ -13,6 +13,7 @@ OrdererOrgs:
   - Name: Orderer
     Domain: example.com
     EnableNodeOUs: true
+    
     # ---------------------------------------------------------------------------
     # "Specs" - See PeerOrgs for complete description
     # ---------------------------------------------------------------------------
@@ -20,3 +21,9 @@ OrdererOrgs:
       - Hostname: orderer
         SANS:
           - localhost
+    Template:
+      Count : 2
+      SANS:
+        - localhost
+      # Start: 0
+      # Hostname: {{.Prefix}}{{.Index}}

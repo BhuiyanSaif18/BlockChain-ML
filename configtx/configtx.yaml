@@ -210,6 +210,8 @@ Orderer: &OrdererDefaults
     # to include the OrdererEndpoints item in your org definition
     Addresses:
         - orderer.example.com:7050
+        - orderer0.example.com:7050
+        - orderer1.example.com:7050
 
     EtcdRaft:
         Consenters:
@@ -217,6 +219,14 @@ Orderer: &OrdererDefaults
           Port: 7050
           ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
           ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+        - Host: orderer0.example.com
+          Port: 7050
+          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer0.example.com/tls/server.crt
+          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer0.example.com/tls/server.crt
+        - Host: orderer1.example.com
+          Port: 7050
+          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
+          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
 
     # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 2s
