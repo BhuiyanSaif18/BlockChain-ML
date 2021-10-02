@@ -23,6 +23,7 @@ fi
 
 # clean out any old identites in the wallets
 rm -rf express-app/myapp/wallet/*
+rm -rf express-app/myapp/wallet2/*
 
 # launch network; create channel and join peer to channel
 # pushd ../test-network
