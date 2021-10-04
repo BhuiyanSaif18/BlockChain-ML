@@ -7,6 +7,8 @@ version: '3.9'
 
 volumes:
   orderer.example.com:
+  orderer0.example.com:
+  orderer1.example.com:
   peer0.org1.example.com:
   peer0.org2.example.com:
 
@@ -117,8 +119,8 @@ services:
         - ../organizations/ordererOrganizations/example.com/orderers/orderer0.example.com/tls/:/var/hyperledger/orderer/tls
         - orderer0.example.com:/var/hyperledger/production/orderer
     ports:
-      - 7050:7050
-      - 8443:8443
+      - 8050:8050
+      - 6443:8443
     networks:
       - test-net
 
@@ -170,8 +172,8 @@ services:
         - ../organizations/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/:/var/hyperledger/orderer/tls
         - orderer1.example.com:/var/hyperledger/production/orderer
     ports:
-      - 7050:7050
-      - 8443:8443
+      - 9050:9050
+      - 5443:8443
     networks:
       - test-net
 
