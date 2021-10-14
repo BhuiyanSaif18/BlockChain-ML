@@ -43,17 +43,10 @@ adminPrivateKeyOrg2MSP=$(ls organizations/peerOrganizations/org2.example.com/use
 adminPrivateKeyOrg1MSPPath=$"/tmp/crypto/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/$adminPrivateKeyOrg1MSP"
 adminPrivateKeyOrg2MSPPath=$"/tmp/crypto/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/$adminPrivateKeyOrg2MSP"
 
+cat connection-profile/test-network.json | jq '.organizations.Org1MSP.adminPrivateKey.path = $v' --arg v $adminPrivateKeyOrg1MSPPath | sponge connection-profile/test-network.json
+cat connection-profile/test-network.json | jq '.organizations.Org2MSP.adminPrivateKey.path = $v' --arg v $adminPrivateKeyOrg2MSPPath | sponge connection-profile/test-network.json
 
-mv connection-profile/test-network.json connection-profile/temp.json
-jq -r '.organizations.Org1MSP.adminPrivateKey.path |= '$adminPrivateKeyOrg1MSPPath'' connection-profile/temp.json > connection-profile/test-network.json
-rm connection-profile/temp.json
-
-
-jq .organizations.Org1MSP.adminPrivateKey.path = adminPrivateKeyOrg1MSPPath connection-profile/test-network.json 
-jq .organizations.Org2MSP.adminPrivateKey.path = adminPrivateKeyOrg2MSPPath connection-profile/test-network.json 
-# jq '.key1 = "new-value1"'
-# jq '.key1 = "new-value1"'
-# docker stack deploy --compose-file docker/docker-compose-test-net.yaml ml
+docker stack deploy --compose-file docker/docker-compose-explorer.yaml ml
 # popd test-network
 
 cat <<EOF
