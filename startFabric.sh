@@ -40,12 +40,12 @@ sleep 10
 adminPrivateKeyOrg1MSP=$(ls organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/)
 adminPrivateKeyOrg2MSP=$(ls organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/)
 
-adminPrivateKeyOrg1MSPPath='asdasd'
+adminPrivateKeyOrg1MSPPath=$"/tmp/crypto/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/$adminPrivateKeyOrg1MSP"
 adminPrivateKeyOrg2MSPPath=$"/tmp/crypto/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/$adminPrivateKeyOrg2MSP"
 
 
 mv connection-profile/test-network.json connection-profile/temp.json
-jq -r ".organizations.Org1MSP.adminPrivateKey.path |= '$adminPrivateKeyOrg1MSPPath'" connection-profile/temp.json > connection-profile/test-network.json
+jq -r '.organizations.Org1MSP.adminPrivateKey.path |= '$adminPrivateKeyOrg1MSPPath'' connection-profile/temp.json > connection-profile/test-network.json
 rm connection-profile/temp.json
 
 
