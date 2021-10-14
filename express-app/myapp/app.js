@@ -16,6 +16,8 @@ var usersRouter = require('./routes/users');
 
 var ValidationJS =require ("./routes/validation.js");
 
+var ChangeOwnershipJS =require ("./routes/changeOwnership.js");
+
 var prediction =require ("./routes/predict.js");
 
 var app = express();
@@ -101,6 +103,11 @@ app.get('/queryCar2', function(req, res){
 app.get('/createCar', function(req, res){
 
   ValidationJS.createCar(res);
+});
+
+app.get('/changeOwnership', function(req, res){
+
+  ChangeOwnershipJS.changeOwnership(res);
 });
 
 app.get('/createCar2', function(req, res){

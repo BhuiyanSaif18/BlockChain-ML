@@ -38,3 +38,6 @@
 /system-genesis-block/
 /express-app/myapp/wallet/
 /express-app/myapp/wallet2/
+/docker-logs/Reports
+/bin
+/venv
