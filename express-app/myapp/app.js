@@ -18,6 +18,8 @@ var ValidationJS =require ("./routes/validation.js");
 
 var ChangeOwnershipJS =require ("./routes/changeOwnership.js");
 
+var RegisterUserJS =require ("./routes/registerUser.js");
+
 var prediction =require ("./routes/predict.js");
 
 var app = express();
@@ -108,6 +110,16 @@ app.get('/createCar', function(req, res){
 app.get('/changeOwnership', function(req, res){
 
   ChangeOwnershipJS.changeOwnership(res);
+});
+
+app.get('/createUser1', function(req, res){
+
+  RegisterUserJS.registerUserGeneral(res);
+});
+
+app.get('/createUser2', function(req, res){
+
+  RegisterUserJS.registerUserGeneral2(res);
 });
 
 app.get('/createCar2', function(req, res){
