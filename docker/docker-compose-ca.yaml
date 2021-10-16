@@ -24,11 +24,11 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.001'
-          memory: 10M
+          cpus: '0.10'
+          memory: 100M
         reservations:
-          cpus: '0.005'
-          memory: 5M
+          cpus: '0.05'
+          memory: 50M
 
     image: hyperledger/fabric-ca:1.4.9
     environment:
@@ -58,11 +58,11 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.001'
-          memory: 10M
+          cpus: '0.10'
+          memory: 100M
         reservations:
-          cpus: '0.005'
-          memory: 5M
+          cpus: '0.05'
+          memory: 50M
     image: hyperledger/fabric-ca:1.4.9
     environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -91,11 +91,11 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.001'
-          memory: 10M
+          cpus: '0.10'
+          memory: 100M
         reservations:
-          cpus: '0.005'
-          memory: 5M
+          cpus: '0.05'
+          memory: 50M
 
     image: hyperledger/fabric-ca:1.4.9
     environment:
