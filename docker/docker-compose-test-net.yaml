@@ -203,8 +203,8 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 7051:7051
-      - 9543:9443
+      - 8051:7051
+      - 7543:9443
     networks:
       - test-net
     depends_on:
