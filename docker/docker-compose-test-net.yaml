@@ -29,11 +29,11 @@ services:
         constraints: [node.role == manager]
       resources:
         limits:
-          cpus: '0.10'
-          memory: 100M
+          cpus: '0.033'
+          memory: 33M
         reservations:
-          cpus: '0.05'
-          memory: 50M
+          cpus: '0.005'
+          memory: 10M
     hostname: orderer.example.com
     image: hyperledger/fabric-orderer:2.2.2
     environment:
