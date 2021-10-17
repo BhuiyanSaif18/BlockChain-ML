@@ -83,9 +83,9 @@ setGlobalsCLI() {
     USING_PEER="0"
   fi
 
-  if [ $USING_ORG -eq 1 && USING_PEER -eq 0]; then
+  if [[ $USING_ORG -eq 1 && USING_PEER -eq 0 ]]; then
     export CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-  elif [ $USING_ORG -eq 1 && USING_PEER -eq 1]; then
+  elif [[ $USING_ORG -eq 1 && USING_PEER -eq 1 ]]; then
     export CORE_PEER_ADDRESS=peer0.org1.example.com:8051
   elif [ $USING_ORG -eq 2 ]; then
     export CORE_PEER_ADDRESS=peer0.org2.example.com:9051
