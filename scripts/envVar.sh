@@ -20,8 +20,7 @@ export PEER0_ORG3_CA=${PWD}/organizations/peerOrganizations/org3.example.com/pee
 # Set environment variables for the peer org
 setGlobals() {
   local USING_ORG=""
-  local USING_PEER="0"
-  successln "USING_PEER '$0' USING_ORG '$1'"
+  local USING_PEER=""
   if [ -z "$OVERRIDE_ORG" ]; then
     USING_ORG=$1
   else
@@ -33,8 +32,7 @@ setGlobals() {
   else
     USING_PEER="${OVERRIDE_PEER}"
   fi
-  successln "USING_PEER '$USING_PEER' USING_ORG '$USING_ORG'"
-  infoln "Using organization ${USING_ORG}"
+  infoln "Using organization ${USING_ORG} peer ${USING_PEER}"
   if [[ $USING_ORG -eq 1 && $USING_PEER -eq 0 ]]; then
     export CORE_PEER_LOCALMSPID="Org1MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA

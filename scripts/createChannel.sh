@@ -87,16 +87,17 @@ successln "Channel '$CHANNEL_NAME' created"
 
 ## Join all the peers to the channel
 sleep 10
-infoln "Joining org1 peer to the channel..."
+infoln "Joining org1 peer0 to the channel..."
 joinChannel 1 0
+infoln "Joining org1 peer1 to the channel..."
 joinChannel 1 1
-infoln "Joining org2 peer to the channel..."
+infoln "Joining org2 peer0 to the channel..."
 joinChannel 2 0
 
 ## Set the anchor peers for each org in the channel
-infoln "Setting anchor peer for org1..."
+infoln "Setting anchor peer0 for org1..."
 setAnchorPeer 1 0
-infoln "Setting anchor peer for org2..."
+infoln "Setting anchor peer0 for org2..."
 setAnchorPeer 2 0
 
 successln "Channel '$CHANNEL_NAME' joined"
