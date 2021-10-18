@@ -22,6 +22,7 @@
     "mychannel": {
       "peers": {
         "peer0.org1.example.com": {},
+        "peer1.org1.example.com": {},
         "peer0.org2.example.com": {}
       }
     }
@@ -30,7 +31,7 @@
     "Org1MSP": {
       "mspid": "Org1MSP",
       "adminPrivateKey": {
-        "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/1ce9a22a6c96b24d2774405d2a95d4fed3b6140355defcfbc3919a4033a7a978_sk"
+        "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/e85c4ea6632f296f8960f40cef818bd9302a31273ee5568501f38e33cb2a0ebb_sk"
       },
       "peers": [
         "peer0.org1.example.com"
@@ -42,7 +43,7 @@
     "Org2MSP": {
       "mspid": "Org2MSP",
       "adminPrivateKey": {
-        "path": "/tmp/crypto/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/bd37237b83682b91cec232841c0fd11ac9c7fd6d78e1bcb7e2fdee568df6d248_sk"
+        "path": "/tmp/crypto/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/7eed7603e332dd727299873e4b056725ec75c60506d7de8bc0d2d0936041fe6e_sk"
       },
       "peers": [
         "peer0.org2.example.com"
@@ -58,6 +59,12 @@
         "path": "/tmp/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
       },
       "url": "grpcs://peer0.org1.example.com:7051"
+    },
+    "peer1.org1.example.com": {
+      "tlsCACerts": {
+        "path": "/tmp/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
+      },
+      "url": "grpcs://peer1.org1.example.com:8051"
     },
     "peer0.org2.example.com": {
       "tlsCACerts": {
