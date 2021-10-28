@@ -105,7 +105,7 @@ parsePeerConnectionParameters() {
   while [ "$#" -gt 0 ]; do
     NUMBER_OF_PEER=$2
     while [ $NUMBER_OF_PEER -gt 0 ]; do
-      $NUMBER_OF_PEER=$[ NUMBER_OF_PEER - 1 ]
+      NUMBER_OF_PEER=$[NUMBER_OF_PEER - 1]
       setGlobals $1 $NUMBER_OF_PEER
       PEER="peer${NUMBER_OF_PEER}.org$1"
       ## Set peer addresses
@@ -116,6 +116,7 @@ parsePeerConnectionParameters() {
       PEER_CONN_PARMS="$PEER_CONN_PARMS $TLSINFO"
     done
     # shift by one to get to the next organization
+    shift
     shift
   done
   # remove leading space for output
