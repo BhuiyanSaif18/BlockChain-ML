@@ -44,10 +44,15 @@ nvm --version
 
 nvm install 10.15.3
 
+sudo apt  install jq
+
 logout
 
 curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.3 1.5.0
 
+sudo apt  install jq
+
+sudo apt-get install moreutils
 
 # In case of make fail
 # apt-get install -y build-essential
