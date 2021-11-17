@@ -5,9 +5,9 @@ test:
       type: local
       number: 2
     rounds:
-    - label: readAsset
-      description: Read asset benchmark
-      txDuration: 30
+    - label: Create Car txd 10
+      description: Create Car benchmark
+      txDuration: 10
       rateControl: 
         type: fixed-load
         opts:
@@ -17,15 +17,107 @@ test:
         arguments:
           assets: 10
           contractId: fabcar
+    # - label: Create Car txd 20
+    #   description: Create Car benchmark
+    #   txDuration: 20
+    #   rateControl: 
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 2
+    #   workload:
+    #     module: workload/readAsset.js
+    #     arguments:
+    #       assets: 10
+    #       contractId: fabcar
+    # - label: Create Car txd 30
+    #   description: Create Car benchmark
+    #   txDuration: 30
+    #   rateControl: 
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 2
+    #   workload:
+    #     module: workload/readAsset.js
+    #     arguments:
+    #       assets: 10
+    #       contractId: fabcar
+    # - label: Create Car
+    #   description: Create Car benchmark
+    #   txDuration: 30
+    #   rateControl: 
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 2
+    #   workload:
+    #     module: workload/readAsset.js
+    #     arguments:
+    #       assets: 10
+    #       contractId: fabcar
+    # - label: Create Car txd 40
+    #   description: Create Car benchmark
+    #   txDuration: 40
+    #   rateControl: 
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 2
+    #   workload:
+    #     module: workload/readAsset.js
+    #     arguments:
+    #       assets: 10
+    #       contractId: fabcar
+    # - label: Create Car txd 50
+    #   description: Create Car benchmark
+    #   txDuration: 50
+    #   rateControl: 
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 2
+    #   workload:
+    #     module: workload/readAsset.js
+    #     arguments:
+    #       assets: 10
+    #       contractId: fabcar
+    # - label: Create Car txd 60
+    #   description: Create Car benchmark
+    #   txDuration: 60
+    #   rateControl: 
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 2
+    #   workload:
+    #     module: workload/readAsset.js
+    #     arguments:
+    #       assets: 10
+    #       contractId: fabcar
+    # - label: Create Car txd 70
+    #   description: Create Car benchmark
+    #   txDuration: 70
+    #   rateControl: 
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 2
+    #   workload:
+    #     module: workload/readAsset.js
+    #     arguments:
+    #       assets: 10
+    #       contractId: fabcar
     monitors:
       resource:
-      - module: docker
+      - module: prometheus
         options:
-          interval: 5 
-          containers:
-          - all
-        charting:
-          bar:
-            metrics: [Memory(avg), CPU%(avg)]
-          polar:
-            metrics: [all]
+          interval: 5
+          url: "http://127.0.0.1:9090"
+          metrics:
+              include: [dev-.*, ml_couchdb0.*, ml_couchdb1.*, ml_peer0org1.1.j5w9q0zk6nibficguhts0oo2d,  ml_peer0org2.1.rv9msipmgqa82zdgexozw9e5g, ml_orderer1.*]
+              queries:
+                  - name: Ledger Blockchain_height
+                    query: ledger_blockchain_height
+                    step: 1
+                    label: instance
+                    statistic: avg
+                  - name: Max Memory (MB)
+                    query: endorser_proposal_duration_sum{chaincode="fabcar"}
+                    step: 10
+                    label: name
+                    statistic: max
+                    multiplier: 0.000001
