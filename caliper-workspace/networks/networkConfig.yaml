@@ -15,9 +15,20 @@ organizations:
       certificates:
       - name: 'User1'
         clientPrivateKey:
-          path: '../organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/ca29f8135b3d655f5726cb11d6e4832ab83caed73786db49da3faa2a43a304ca_sk'
+          path: '../organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/ffb148e16afcafb18c4dfcc1ab6d7a0bc81a3aa384eaa5e5556ffe7b5cada9dd_sk'
         clientSignedCert:
           path: '../organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/cert.pem'
     connectionProfile:
       path: '../organizations/peerOrganizations/org1.example.com/connection-org1.yaml'
+      discover: true
+  - mspid: Org2MSP
+    identities:
+      certificates:
+      - name: 'User1'
+        clientPrivateKey:
+          path: '../organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/460623117787855cb1ec105a9fa4dbd867691f8bfc46af0d9faf01f94d65166d_sk'
+        clientSignedCert:
+          path: '../organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/cert.pem'
+    connectionProfile:
+      path: '../organizations/peerOrganizations/org2.example.com/connection-org2.yaml'
       discover: true
